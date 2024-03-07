@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#009688"
+        android:padding="10dp"
+        android:text="Изменить контакт"
+        android:textAlignment="viewStart"
+        android:textColor="#F1F1F1"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/editImage"
+        android:layout_width="wrap_content"
+        android:layout_height="360dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:padding="8dp"
+        android:text="Имя:"
+        android:textAlignment="viewStart"
+        android:textColor="#515151"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/editImage"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <TextView
+        android:id="@+id/company"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:padding="8dp"
+        android:text="Компания:"
+        android:textAlignment="viewStart"
+        android:textColor="#515151"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/editImage"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <EditText
+        android:id="@+id/editName"
+        style="@style/Widget.Material3.MaterialTimePicker.Display.TextInputEditText"
+        android:layout_width="210dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:hint="Полное имя"
+        android:inputType="text"
+        android:textAlignment="viewStart"
+        android:textColor="#515151"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <EditText
+        android:id="@+id/editCompany"
+        style="@style/Widget.Material3.MaterialTimePicker.Display.TextInputEditText"
+        android:layout_width="210dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:hint="Название компании"
+        android:inputType="text"
+        android:textAlignment="viewStart"
+        android:textColor="#515151"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/company"
+        app:layout_constraintTop_toBottomOf="@+id/editName" />
+
+    <ImageView
+        android:id="@+id/imagePhone"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:scaleType="fitStart"
+        app:layout_constraintStart_toEndOf="@id/editImage"
+        app:layout_constraintTop_toBottomOf="@+id/company"
+        app:srcCompat="@android:drawable/ic_menu_call" />
+
+    <EditText
+        android:id="@+id/editPhone"
+        style="@style/Widget.Material3.MaterialTimePicker.Display.TextInputEditText"
+        android:layout_width="210dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:hint="Телефон"
+        android:inputType="phone"
+        android:textAlignment="viewStart"
+        android:textColor="#515151"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imagePhone"
+        app:layout_constraintTop_toBottomOf="@+id/editCompany" />
+
+    <Button
+        android:id="@+id/button3"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#F6F1F9"
+        android:text="Сохранить"
+        android:textColor="#009688"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:strokeColor="#009688" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
