@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="280dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="48dp"
+        android:textAlignment="center"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:paddingStart="15dp"
+        android:layout_marginTop="108dp"
+        android:textSize="18dp"
+        android:text="Порядок выполнения: runn1, runn2, runn3 \n\nrunOnUiThread: метод проверяет, находится ли текущий поток на главном потоке UI.Если да, то задача выполняется немедленно, иначе задача добавляется в очередь к главному потоку UI.\n\npost:  в отличие от runOnUiThread всегда помещает задачу в очередь к главному потоку UI.\n\npostDelayed: метод аналогичен post, но позволяет указать задержку перед выполнением задачи."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfo" />
+</androidx.constraintlayout.widget.ConstraintLayout>
