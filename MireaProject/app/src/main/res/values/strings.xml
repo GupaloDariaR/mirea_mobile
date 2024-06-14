@@ -15,4 +15,9 @@
     <string name="menu_brouser">Browser</string>
     <string name="menu_data">Data</string>
     <string name="menu_worker">Worker</string>
+    <string name="menu_recorder">Recorder</string>
+    <string name="menu_collage">Collage</string>
+    <string name="menu_sensor">Sensor</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_filework">File Work</string>
 </resources>

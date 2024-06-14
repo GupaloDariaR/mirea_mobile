@@ -5,6 +5,28 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_filework"
+            android:icon="@drawable/ic_menu_filework"
+            android:title="@string/menu_filework" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_menu_profile"
+            android:title="@string/menu_profile" />
+        <item
+            android:id="@+id/nav_sensor"
+            android:icon="@drawable/ic_menu_sensor"
+            android:title="@string/menu_sensor" />
+        <item
+            android:id="@+id/nav_collage"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_collage" />
+
+        <item
+            android:id="@+id/nav_recorder"
+            android:icon="@drawable/ic_menu_recorder"
+            android:title="@string/menu_recorder" />
+
+        <item
             android:id="@+id/nav_worker"
             android:icon="@drawable/ic_menu_worker"
             android:title="@string/menu_worker" />
@@ -19,7 +41,7 @@
             android:title="@string/menu_data" />
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_menu_home"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_gallery"

@@ -22,20 +22,52 @@
         android:name="ru.mirea.gupalodr.mireaproject.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
     <fragment
         android:id="@+id/nav_brouser"
         android:name="ru.mirea.gupalodr.mireaproject.WebViewFragment"
-        android:label="Browser"
+        android:label="@string/menu_brouser"
         tools:layout="@layout/fragment_web_view" />
+
     <fragment
         android:id="@+id/nav_data"
         android:name="ru.mirea.gupalodr.mireaproject.DataFragment"
-        android:label="Data"
+        android:label="@string/menu_data"
         tools:layout="@layout/fragment_data" />
 
     <fragment
         android:id="@+id/nav_worker"
         android:name="ru.mirea.gupalodr.mireaproject.WorkerFragment"
-        android:label="Worker"
+        android:label="@string/menu_worker"
         tools:layout="@layout/fragment_worker" />
+
+    <fragment
+        android:id="@+id/nav_recorder"
+        android:name="ru.mirea.gupalodr.mireaproject.RecorderFragment"
+        android:label="@string/menu_recorder"
+        tools:layout="@layout/fragment_recorder" />
+
+    <fragment
+        android:id="@+id/nav_collage"
+        android:name="ru.mirea.gupalodr.mireaproject.CollageFragment"
+        android:label="@string/menu_collage"
+        tools:layout="@layout/fragment_collage" />
+
+    <fragment
+        android:id="@+id/nav_sensor"
+        android:name="ru.mirea.gupalodr.mireaproject.SensorFragment"
+        android:label="@string/menu_sensor"
+        tools:layout="@layout/fragment_sensor" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="ru.mirea.gupalodr.mireaproject.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_filework"
+        android:name="ru.mirea.gupalodr.mireaproject.FileWorkFragment"
+        android:label="@string/menu_filework"
+        tools:layout="@layout/fragment_file_work" />
 </navigation>
