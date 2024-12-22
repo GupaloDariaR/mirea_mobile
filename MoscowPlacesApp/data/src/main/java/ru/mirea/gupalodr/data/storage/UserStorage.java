@@ -1,12 +1,11 @@
-package ru.mirea.gupalodr.domain.repository;
+package ru.mirea.gupalodr.data.storage;
 
 import java.util.List;
 
-import ru.mirea.gupalodr.domain.models.Place;
-import ru.mirea.gupalodr.domain.models.User;
+import ru.mirea.gupalodr.data.storage.models.Place;
+import ru.mirea.gupalodr.data.storage.models.User;
 
-public interface UserRepository {
-    public List<User> getAllUsers();
+public interface UserStorage {
     public boolean saveUser(User user);
     public User getUserById(int id);
     public boolean ChangeUserInfoById(int id, String login, String password);
@@ -14,4 +13,5 @@ public interface UserRepository {
     public boolean addPlaceToFavorites(Place place);
     public List<Place> getFavoritePlaces();
     public boolean removePlaceFromFavorites(int id);
+
 }

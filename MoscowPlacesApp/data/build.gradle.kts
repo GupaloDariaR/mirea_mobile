@@ -1,19 +1,16 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
 }
 
 android {
-    namespace = "ru.mirea.gupalodr.moscowplacesapp"
+    namespace = "ru.mirea.gupalodr.data"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "ru.mirea.gupalodr.moscowplacesapp"
         minSdk = 26
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -35,10 +32,11 @@ dependencies {
 
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation(project(mapOf("path" to ":data")))
     implementation(project(mapOf("path" to ":domain")))
+    implementation("androidx.room:room-common:2.6.1")
+    implementation("androidx.room:room-runtime:2.6.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
 }

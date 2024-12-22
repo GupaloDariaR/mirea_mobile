@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Moscow Places App"
 include(":app")
- 
+include(":data")
+include(":domain")

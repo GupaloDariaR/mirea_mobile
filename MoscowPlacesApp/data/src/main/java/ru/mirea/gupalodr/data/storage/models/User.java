@@ -1,4 +1,4 @@
-package ru.mirea.gupalodr.domain.models;
+package ru.mirea.gupalodr.data.storage.models;
 
 import java.util.List;
 
@@ -43,17 +43,11 @@ public class User {
     }
 
     public void removeFromFavoritePlaces(int id) {
-        for (Place place: favoritePlaces) {
-            if (place.getId() == id) {
-                favoritePlaces.remove(place);
-                break;
-            }
-        }
+        this.favoritePlaces.removeIf(place -> (place.getId() == id));
     }
 
     @Override
     public String toString() {
         return this.getLogin();
     }
-
 }

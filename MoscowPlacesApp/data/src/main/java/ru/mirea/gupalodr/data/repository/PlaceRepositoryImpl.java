@@ -6,49 +6,52 @@ import android.content.SharedPreferences;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.mirea.gupalodr.moscowplacesapp.domain.models.Place;
-import ru.mirea.gupalodr.moscowplacesapp.domain.models.Review;
-import ru.mirea.gupalodr.moscowplacesapp.domain.models.User;
-import ru.mirea.gupalodr.moscowplacesapp.domain.repository.PlaceRepository;
+import ru.mirea.gupalodr.data.storage.PlaceStorage;
+import ru.mirea.gupalodr.data.storage.models.Review;
+import ru.mirea.gupalodr.data.storage.models.User;
+import ru.mirea.gupalodr.data.storage.models.Place;
+import ru.mirea.gupalodr.domain.repository.PlaceRepository;
 
 public class PlaceRepositoryImpl implements PlaceRepository {
-    private final List<Place> PLACES = new ArrayList<>();
-    Context context;
+    PlaceStorage sharedPrefPlaceStorage;
 
-    public PlaceRepositoryImpl(Context context){
-        this.context = context;
-        PLACES.add(new Place(1, "Парк Горького", "Парк Горького имеет огромную площадь. Здесь много зелени, ухоженных аллей и живописных уголков. В парке есть несколько прудов с утками и лебедями, а также пруд, где можно покататься на водных велосипедах и катамаранах."));
-        PLACES.add(new Place(2, "Парк Зарядье", "В парке представлена необычная архитектура, высокотехнологичные аттракционы, современный научно-просветительский центр для детей и музейно-выставочное пространство."));
-        PLACES.add(new Place(3, "Третьяковская галлерея", "ретьяковская галерея — это один из крупнейших художественных музеев мира, сокровищница русского искусства. Здесь собрана уникальная коллекция произведений русских художников, начиная с XI века и до наших дней."));
+    public PlaceRepositoryImpl(PlaceStorage sharedPrefPlaceStorage){
+        this.sharedPrefPlaceStorage = sharedPrefPlaceStorage;
     }
 
     @Override
-    public List<Place> getAllPlaces() {
-        return PLACES;
+    public List<ru.mirea.gupalodr.domain.models.Place> getAllPlaces() {
+        List<Place> places = sharedPrefPlaceStorage.getAllPlaces();
+        List<ru.mirea.gupalodr.domain.models.Place> allPlaces = new ArrayList<>();
+        for (Place place : places) {
+            allPlaces.add(mapToDomainPlace(place));
+        }
+        return allPlaces;
     }
 
     @Override
-    public Place getPlaceById(int id) {
-        for (Place place : PLACES) {
-            if (place.getId() == id) {
-                return place;
-            }
-        };
-        return null;
+    public ru.mirea.gupalodr.domain.models.Place getPlaceById(int id) {
+        return mapToDomainPlace(sharedPrefPlaceStorage.getPlaceById(id));
     }
 
     @Override
     public boolean addReviewForPlace(int id, String text) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
-        int userid = sharedPreferences.getInt("user", 1);
-
-        for (User user : UserRepositoryImpl.getAllUsers()) {
-            if (user.getId() == userid) {
-                getPlaceById(id).addReview(new Review(text, user));
-                return true;
-            }
-        }
-        return false;
+        return sharedPrefPlaceStorage.addReviewForPlace(id, text);
     }
+
+    private ru.mirea.gupalodr.data.storage.models.Place mapToStoragePlace(ru.mirea.gupalodr.domain.models.Place place){
+        int id = place.getId();
+        String title = place.getTitle();
+        String description = place.getDescription();
+        return new ru.mirea.gupalodr.data.storage.models.Place(id, title, description);
+    }
+
+    private ru.mirea.gupalodr.domain.models.Place mapToDomainPlace(ru.mirea.gupalodr.data.storage.models.Place place){
+        int id = place.getId();
+        String title = place.getTitle();
+        String description = place.getDescription();
+        return new ru.mirea.gupalodr.domain.models.Place(id, title, description);
+    }
+
 
 }

@@ -3,22 +3,26 @@ package ru.mirea.gupalodr.moscowplacesapp.presentation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.List;
 
+import ru.mirea.gupalodr.data.repository.UserRepositoryImpl;
+import ru.mirea.gupalodr.data.storage.UserStorage;
+import ru.mirea.gupalodr.data.storage.sharedprefs.SharedPrefUserStorage;
+import ru.mirea.gupalodr.domain.models.Place;
+import ru.mirea.gupalodr.domain.models.User;
+import ru.mirea.gupalodr.domain.repository.PlaceRepository;
+import ru.mirea.gupalodr.data.repository.PlaceRepositoryImpl;
+import ru.mirea.gupalodr.data.storage.PlaceStorage;
+import ru.mirea.gupalodr.data.storage.sharedprefs.SharedPrefPlaceStorage;
+import ru.mirea.gupalodr.domain.repository.UserRepository;
+import ru.mirea.gupalodr.domain.usecases.place.GetAllPlacesUseCase;
+import ru.mirea.gupalodr.domain.usecases.user.SignUpUseCase;
 import ru.mirea.gupalodr.moscowplacesapp.R;
-import ru.mirea.gupalodr.moscowplacesapp.data.repository.PlaceRepositoryImpl;
-import ru.mirea.gupalodr.moscowplacesapp.data.repository.UserRepositoryImpl;
-import ru.mirea.gupalodr.moscowplacesapp.domain.models.Place;
-import ru.mirea.gupalodr.moscowplacesapp.domain.models.User;
-import ru.mirea.gupalodr.moscowplacesapp.domain.repository.PlaceRepository;
-import ru.mirea.gupalodr.moscowplacesapp.domain.repository.UserRepository;
-import ru.mirea.gupalodr.moscowplacesapp.domain.usecases.place.GetAllPlacesUseCase;
-import ru.mirea.gupalodr.moscowplacesapp.domain.usecases.user.SignUpUseCase;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
 //      Вывод всех мест
         TextView textAllPlaces = findViewById(R.id.textViewAllPlaces);
-        PlaceRepository placeRepository = new PlaceRepositoryImpl(getApplicationContext());
+        PlaceStorage sharedPrefPlaceStorage = new SharedPrefPlaceStorage(this);
+        PlaceRepository placeRepository = new PlaceRepositoryImpl(sharedPrefPlaceStorage);
 
         findViewById(R.id.buttonGetAllPlaces).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
 //      Вывод всех пользователей
         TextView textAllUsers = findViewById(R.id.textViewAllUsers);
-        UserRepositoryImpl userRepository = new UserRepositoryImpl(getApplicationContext());
+        UserStorage sharedPrefUserStorage = new SharedPrefUserStorage(this);
+        UserRepository userRepository = new UserRepositoryImpl(sharedPrefUserStorage);
 
         findViewById(R.id.buttonGetAllUsers).setOnClickListener(new View.OnClickListener() {
             @Override
