@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "509032893924",
+    "project_id": "moscow-places-app",
+    "storage_bucket": "moscow-places-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509032893924:android:6879f1062b3a7828350bf1",
+        "android_client_info": {
+          "package_name": "ru.mirea.gupalodr.moscowplacesapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-uGqtBxdNDYJMfVrG4AQBULUstt49TqM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

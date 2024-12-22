@@ -10,6 +10,6 @@ public class ChangeUserInfoByIdUseCase {
     }
 
     public boolean execute(int id, String login, String password) {
-        return userRepository.ChangeUserInfoById(id, login, password);
+        return userRepository.changeUserInfoById(id, login, password);
     }
 }

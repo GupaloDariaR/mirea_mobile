@@ -10,6 +10,6 @@ public class LogInUseCase {
     }
 
     public boolean execute(String login, String password) {
-        return userRepository.logIn(login, password);
+        return userRepository.signIn(login, password);
     }
 }

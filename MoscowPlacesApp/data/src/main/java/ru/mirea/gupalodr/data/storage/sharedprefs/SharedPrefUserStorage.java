@@ -42,7 +42,7 @@ public class SharedPrefUserStorage implements UserStorage {
     }
 
     @Override
-    public boolean ChangeUserInfoById(int id, String login, String password) {
+    public boolean changeUserInfoById(int id, String login, String password) {
         for (User user: USERS) {
             if (user.getId() == id) {
                 user.setLogin(login);
@@ -53,19 +53,19 @@ public class SharedPrefUserStorage implements UserStorage {
         return false;
     }
 
-    @Override
-    public boolean logIn(String login, String password) {
-        for (User user : USERS) {
-            if (user.getLogin() == login && user.getPassword() == password) {
-                SharedPreferences sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt("user", user.getId());
-                editor.apply();
-                return true;
-            }
-        }
-        return false;
-    }
+//    @Override
+//    public boolean logIn(String login, String password) {
+//        for (User user : USERS) {
+//            if (user.getLogin() == login && user.getPassword() == password) {
+//                SharedPreferences sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putInt("user", user.getId());
+//                editor.apply();
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     @Override
     public boolean addPlaceToFavorites(Place place) {

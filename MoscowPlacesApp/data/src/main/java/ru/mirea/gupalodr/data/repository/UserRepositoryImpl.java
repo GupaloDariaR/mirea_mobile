@@ -1,7 +1,12 @@
 package ru.mirea.gupalodr.data.repository;
 
+import android.util.Log;
+
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import ru.mirea.gupalodr.data.storage.UserStorage;
 import ru.mirea.gupalodr.data.storage.models.Place;
@@ -11,9 +16,12 @@ import ru.mirea.gupalodr.domain.repository.UserRepository;
 
 public class UserRepositoryImpl implements UserRepository {
     UserStorage sharedPrefUserStorage;
+    private FirebaseAuth firebaseAuth;
+    String TAG = "FirebaseAuth";
 
-    public UserRepositoryImpl(UserStorage sharedPrefUserStorage){
+    public UserRepositoryImpl(UserStorage sharedPrefUserStorage, FirebaseAuth firebaseAuth){
         this.sharedPrefUserStorage = sharedPrefUserStorage;
+        this.firebaseAuth = firebaseAuth;
     }
 
     @Override
@@ -27,24 +35,50 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public boolean saveUser(ru.mirea.gupalodr.domain.models.User user) {
-        return sharedPrefUserStorage.saveUser(mapToStorageUser(user));
-    }
-
-    @Override
     public ru.mirea.gupalodr.domain.models.User getUserById(int id) {
         User user = sharedPrefUserStorage.getUserById(id);
         return mapToDomainUser(user);
     }
 
     @Override
-    public boolean ChangeUserInfoById(int id, String login, String password) {
-        return sharedPrefUserStorage.ChangeUserInfoById(id, login, password);
+    public boolean changeUserInfoById(int id, String login, String password) {
+        return sharedPrefUserStorage.changeUserInfoById(id, login, password);
     }
 
     @Override
-    public boolean logIn(String login, String password) {
-        return sharedPrefUserStorage.logIn(login, password);
+    public boolean signIn(String login, String password) {
+        AtomicBoolean isSuccess = new AtomicBoolean(true);
+        firebaseAuth.signInWithEmailAndPassword(login, password)
+                .addOnCompleteListener(task -> {
+                   if (task.isSuccessful()) {
+                       Log.d(TAG, "SignIn success");
+                   } else {
+                       isSuccess.set(false);
+                       Log.d(TAG, "SignIn fail");
+                   }
+                });
+        return isSuccess.get();
+    }
+
+    @Override
+    public boolean signUp(String login, String password) {
+        AtomicBoolean isSuccess = new AtomicBoolean(true);
+        firebaseAuth.createUserWithEmailAndPassword(login, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "SignUp success");
+                    } else {
+                        isSuccess.set(false);
+                        Log.d(TAG, "SignUp fail");
+                    }
+                });
+        List<ru.mirea.gupalodr.domain.models.User> allUsers = getAllUsers();
+        sharedPrefUserStorage.saveUser(new User(allUsers.get(allUsers.size() - 1).getId()+1, login, password));
+        return isSuccess.get();
+    }
+
+    public void signOut(){
+        firebaseAuth.signOut();
     }
 
     @Override
@@ -85,13 +119,15 @@ public class UserRepositoryImpl implements UserRepository {
         int id = place.getId();
         String title = place.getTitle();
         String description = place.getDescription();
-        return new Place(id, title, description);
+        String img = place.getImg();
+        return new Place(id, title, description, img);
     }
 
     private ru.mirea.gupalodr.domain.models.Place mapToDomainPlace(Place place){
         int id = place.getId();
         String title = place.getTitle();
         String description = place.getDescription();
-        return new ru.mirea.gupalodr.domain.models.Place(id, title, description);
+        String img = place.getImg();
+        return new ru.mirea.gupalodr.domain.models.Place(id, title, description, img);
     }
 }

@@ -43,14 +43,16 @@ public class PlaceRepositoryImpl implements PlaceRepository {
         int id = place.getId();
         String title = place.getTitle();
         String description = place.getDescription();
-        return new ru.mirea.gupalodr.data.storage.models.Place(id, title, description);
+        String img = place.getImg();
+        return new ru.mirea.gupalodr.data.storage.models.Place(id, title, description, img);
     }
 
     private ru.mirea.gupalodr.domain.models.Place mapToDomainPlace(ru.mirea.gupalodr.data.storage.models.Place place){
         int id = place.getId();
         String title = place.getTitle();
         String description = place.getDescription();
-        return new ru.mirea.gupalodr.domain.models.Place(id, title, description);
+        String img = place.getImg();
+        return new ru.mirea.gupalodr.domain.models.Place(id, title, description, img);
     }
 
 

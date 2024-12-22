@@ -16,9 +16,13 @@ public class PlaceDB {
     @ColumnInfo(name = "description")
     private String description;
 
-    public PlaceDB(String title, String description) {
+    @ColumnInfo(name = "img")
+    private String img;
+
+    public PlaceDB(String title, String description, String img) {
         this.title = title;
         this.description = description;
+        this.img = img;
     }
 
     public Integer getId() {
@@ -43,5 +47,13 @@ public class PlaceDB {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

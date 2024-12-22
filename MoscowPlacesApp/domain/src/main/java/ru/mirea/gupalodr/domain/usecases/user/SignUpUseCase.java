@@ -10,7 +10,7 @@ public class SignUpUseCase {
         this.userRepository = userRepository;
     }
 
-    public boolean execute(User user) {
-        return userRepository.saveUser(user);
+    public boolean execute(String login, String password) {
+        return userRepository.signUp(login, password);
     }
 }
