@@ -17,3 +17,6 @@ rootProject.name = "Lesson9"
 include(":app")
 include(":data")
 include(":domain")
+include(":scrollviewapp")
+include(":listviewapp")
+include(":recyclerviewapp")
