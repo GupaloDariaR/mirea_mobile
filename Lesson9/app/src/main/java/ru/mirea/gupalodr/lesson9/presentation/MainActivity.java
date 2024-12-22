@@ -8,11 +8,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import ru.mirea.gupalodr.lesson9.R;
-import ru.mirea.gupalodr.lesson9.data.repository.MovieRepositoryImpl;
-import ru.mirea.gupalodr.lesson9.domain.models.Movie;
-import ru.mirea.gupalodr.lesson9.domain.repository.MovieRepository;
-import ru.mirea.gupalodr.lesson9.domain.usecases.GetFavoriteFilmUseCase;
-import ru.mirea.gupalodr.lesson9.domain.usecases.SaveFilmToFavoriteUseCase;
+import ru.mirea.gupalodr.data.repository.MovieRepositoryImpl;
+import ru.mirea.gupalodr.data.storage.MovieStorage;
+import ru.mirea.gupalodr.data.storage.sharedprefs.SharedPrefMovieStorage;
+import ru.mirea.gupalodr.domain.models.Movie;
+import ru.mirea.gupalodr.domain.repository.MovieRepository;
+import ru.mirea.gupalodr.domain.usecases.GetFavoriteFilmUseCase;
+import ru.mirea.gupalodr.domain.usecases.SaveFilmToFavoriteUseCase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
         EditText text = findViewById(R.id.editTextMovie);
         TextView textView = findViewById(R.id.textViewMovie);
 
-        MovieRepository movieRepository = new MovieRepositoryImpl(getApplicationContext());
+        MovieStorage sharedPrefMovieStorage = new SharedPrefMovieStorage(this);
+        MovieRepository movieRepository = new MovieRepositoryImpl(sharedPrefMovieStorage);
 
         findViewById(R.id.buttonSaveMovie).setOnClickListener(new View.OnClickListener() {
             @Override
