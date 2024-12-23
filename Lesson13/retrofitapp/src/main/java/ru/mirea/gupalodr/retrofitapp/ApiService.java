@@ -12,9 +12,9 @@ public interface ApiService {
     @GET("todos")
     Call<List<Todo>> getTodos();
 
-//    @GET("/todos/{id}")
-//    Call<Todo> getCurrentTodo(@Path("id") Integer id);
-//
-//    @PUT("/todos/{id}")
-//    Call<Todo> updateTodo(@Path("id") Integer id, @Body Todo todo);
+   @GET("/todos/{id}")
+   Call<Todo> getCurrentTodo(@Path("id") Integer id);
+
+   @PUT("/todos/{id}")
+   Call<Todo> updateTodo(@Path("id") Integer id, @Body Todo todo);
 }
